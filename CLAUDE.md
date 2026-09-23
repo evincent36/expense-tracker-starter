@@ -28,8 +28,7 @@ There is no test framework or test script configured.
 
 ## Known gotchas
 
-- `amount` is stored as a **string** (both in seed data and from the form input), while the totals use `reduce((sum, t) => sum + t.amount, 0)`. That produces string concatenation instead of numeric sums. Convert amounts to numbers when touching totals or the data model.
-- The seed data item "Freelance Work" has `type: "expense"` but `category: "salary"`.
+- `amount` must be stored as a **number**. The form input yields a string, so `handleSubmit` converts it with `Number(amount)`; the totals `reduce` would otherwise concatenate strings.
 
 ## Lint config notes
 
