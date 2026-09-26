@@ -27,6 +27,7 @@ Vite 7 + React 19, plain JavaScript (JSX), no TypeScript, no router, no state li
 ```
 App                 state: transactions (seeded), categories (constant)
 ├── Summary         props: transactions            → derives income / expenses / balance
+├── SpendingChart   props: transactions            → derives totals per category (income and expenses) (Recharts column chart)
 ├── TransactionForm props: categories, onAdd       state: description, amount, type, category
 └── TransactionList props: transactions, categories, onDelete   state: filterType, filterCategory, pendingDelete
     └── ConfirmDialog  props: title, message, confirmLabel, onConfirm, onCancel   (rendered only while pendingDelete is set)
