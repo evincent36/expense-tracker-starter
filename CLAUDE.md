@@ -18,6 +18,8 @@ npm run lint       # ESLint over all .js/.jsx files
 
 There is no test framework or test script configured.
 
+Deploy with `/deploy` (`.claude/skills/deploy/SKILL.md`). It runs lint (plus `npm test` once that script exists), then builds, then pushes `HEAD` to the `staging` branch on `origin`. It only runs from a clean `main` that has already been pushed to `origin`.
+
 ## Architecture
 
 Vite 7 + React 19, plain JavaScript (JSX), no TypeScript, no router, no state library, no backend. `index.html` loads `src/main.jsx`, which renders `<App />` inside `StrictMode`.
