@@ -1,235 +1,304 @@
+/* Colors come from Fluent's theme tokens (CSS variables set by FluentProvider),
+   so both the light and dark themes work without extra rules. */
+
+/* ---------- Shell ---------- */
+
+/* Doubled class names outrank the single-class atomic rules Fluent injects at runtime. */
+.fui-FluentProvider.app-root {
+  min-height: 100vh;
+  background: var(--colorNeutralBackground2);
+}
+
+.app-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 24px;
+  background: var(--colorNeutralBackground1);
+  border-bottom: 1px solid var(--colorNeutralStroke2);
+}
+
+.app-bar-icon {
+  font-size: 20px;
+  color: var(--colorBrandForeground1);
+}
+
 .app {
-  max-width: 800px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 32px 24px 64px;
 }
 
-h1 {
-  margin-bottom: 4px;
-}
-
-.subtitle {
-  margin-bottom: 20px;
-  color: #666;
-}
+/* ---------- Summary: the balance as a sentence ---------- */
 
 .summary {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
+  margin: 8px 0 32px;
 }
 
-.summary-card {
-  flex: 1;
-  border: 1px solid #ddd;
-  padding: 14px;
-  background: #fff;
+.summary .summary-headline {
+  display: block;
+  max-width: 18ch;
+  font-size: clamp(32px, 6vw, 52px);
+  line-height: 1.1;
+  font-weight: var(--fontWeightRegular);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
-.summary-card h3 {
-  font-size: 13px;
-  color: #888;
-  margin-bottom: 4px;
+.summary-balance {
+  font-weight: var(--fontWeightBold);
+}
+
+.summary-headline.is-red .summary-balance {
+  color: var(--colorPaletteRedForeground1);
+}
+
+.summary .summary-detail {
+  display: block;
+  margin-top: 12px;
+  color: var(--colorNeutralForeground3);
+}
+
+.summary-detail span {
+  font-weight: var(--fontWeightSemibold);
 }
 
 .income-amount {
-  color: green;
-  font-size: 20px;
-  font-weight: bold;
+  color: var(--colorNeutralForeground1);
 }
 
 .expense-amount {
-  color: red;
-  font-size: 20px;
-  font-weight: bold;
+  color: var(--colorPaletteRedForeground1);
 }
 
-.balance-amount {
-  font-size: 20px;
-  font-weight: bold;
-}
+/* ---------- Panels (Fluent Cards) ---------- */
 
-.add-transaction {
-  border: 1px solid #ddd;
-  padding: 16px;
-  margin-bottom: 24px;
-  background: #fff;
-}
-
-.add-transaction h2 {
-  font-size: 16px;
-  margin-bottom: 12px;
-}
-
-form {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-form input,
-form select {
-  padding: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-
-form input[type="text"] {
-  flex: 2;
-}
-
-form input[type="number"] {
-  flex: 1;
-}
-
-form select {
-  flex: 1;
-}
-
-form button {
-  padding: 8px 20px;
-  background: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.transactions {
-  margin-bottom: 24px;
-}
-
-.transactions h2 {
-  font-size: 16px;
-  margin-bottom: 12px;
-}
-
-.filters {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.filters select {
-  padding: 6px;
-  border: 1px solid #ccc;
-  font-size: 13px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-thead {
-  background: #f5f5f5;
-}
-
-th, td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  font-size: 14px;
-}
-
-th {
-  font-size: 12px;
-  color: #888;
-  text-transform: uppercase;
-}
-
-.delete-btn {
-  padding: 4px 10px;
-  background: #eee;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  font-size: 12px;
-  color: #333;
-}
-
-.confirm-dialog {
-  padding: 0;
-  border: 1px solid #ddd;
-  background: #fff;
-  max-width: 360px;
-  width: calc(100% - 32px);
-}
-
-.confirm-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.confirm-dialog-content {
-  padding: 20px;
-}
-
-.confirm-dialog h3 {
-  font-size: 16px;
-  margin-bottom: 8px;
-}
-
-.confirm-dialog p {
-  font-size: 14px;
-  color: #666;
+.panel.fui-Card {
+  padding: 20px 24px 24px;
+  gap: 16px;
   margin-bottom: 20px;
 }
 
-.confirm-dialog-actions {
+.panel-header {
   display: flex;
-  justify-content: flex-end;
-  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
 }
 
-.confirm-dialog-cancel,
-.confirm-dialog-confirm {
-  padding: 8px 16px;
-  font-size: 14px;
-  cursor: pointer;
+.empty-state {
+  display: block;
+  padding: 24px 0;
+  color: var(--colorNeutralForeground3);
 }
 
-.confirm-dialog-cancel {
-  background: #eee;
-  border: 1px solid #ccc;
-  color: #333;
+/* ---------- Chart ---------- */
+
+.chart-legend {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  font-size: var(--fontSizeBase200);
+  color: var(--colorNeutralForeground3);
 }
 
-.confirm-dialog-confirm {
-  background: #c62828;
-  border: 1px solid #c62828;
-  color: #fff;
+.chart-legend li,
+.chart-tooltip-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.spending-chart {
-  border: 1px solid #ddd;
-  padding: 16px;
-  margin-bottom: 24px;
-  background: #fff;
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
 }
 
-.spending-chart h2 {
-  font-size: 16px;
-  margin-bottom: 12px;
+.swatch-income {
+  background: var(--chart-income);
 }
 
-.spending-chart-empty {
-  font-size: 14px;
-  color: #888;
+.swatch-expense {
+  background: var(--chart-expense);
+}
+
+.spending-chart .bar-income {
+  fill: var(--chart-income);
+}
+
+.spending-chart .bar-expense {
+  fill: var(--chart-expense);
+}
+
+.spending-chart .recharts-text {
+  font-family: var(--fontFamilyBase);
+  fill: var(--colorNeutralForeground1);
+}
+
+.spending-chart .recharts-xAxis .recharts-text {
+  fill: var(--colorNeutralForeground3);
+}
+
+.spending-chart .recharts-cartesian-grid line {
+  stroke: var(--colorNeutralStroke3);
+}
+
+.spending-chart .recharts-cartesian-axis-line {
+  stroke: var(--colorNeutralStroke2);
+}
+
+.spending-chart .recharts-tooltip-cursor {
+  fill: var(--colorSubtleBackgroundHover);
 }
 
 .chart-tooltip {
   display: flex;
-  gap: 12px;
-  padding: 6px 10px;
-  background: #fff;
-  border: 1px solid #ddd;
-  font-size: 13px;
+  gap: 16px;
+  padding: 8px 12px;
+  background: var(--colorNeutralBackground1);
+  color: var(--colorNeutralForeground1);
+  border-radius: var(--borderRadiusMedium);
+  box-shadow: var(--shadow16);
+  font-size: var(--fontSizeBase300);
 }
 
 .chart-tooltip-label {
-  color: #666;
+  color: var(--colorNeutralForeground3);
 }
 
 .chart-tooltip-value {
-  font-weight: bold;
-  color: #333;
+  font-weight: var(--fontWeightSemibold);
+}
+
+/* ---------- Filters & entry form ---------- */
+
+.filters {
+  display: flex;
+  gap: 8px;
+}
+
+.filters select,
+.entry-form select {
+  text-transform: capitalize;
+}
+
+/* A fresh line at the top of the ledger. */
+.entry-form {
+  display: grid;
+  grid-template-columns: auto minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 12px 16px;
+  padding: 16px;
+  background: var(--colorNeutralBackground3);
+  border-radius: var(--borderRadiusMedium);
+}
+
+.entry-form .fui-Input,
+.entry-form .fui-Select {
+  width: 100%;
+  min-width: 0;
+}
+
+.field-type .fui-RadioGroup {
+  flex-wrap: nowrap;
+}
+
+/* ---------- Ledger table ---------- */
+
+.ledger .col-date {
+  width: 80px;
+  color: var(--colorNeutralForeground3);
+  white-space: nowrap;
+}
+
+.ledger .col-description {
+  font-weight: var(--fontWeightSemibold);
+}
+
+.ledger .col-category {
+  color: var(--colorNeutralForeground3);
+  text-transform: capitalize;
+}
+
+.ledger .col-amount {
+  width: 120px;
+  text-align: right;
+  white-space: nowrap;
+  font-weight: var(--fontWeightSemibold);
+}
+
+.ledger .col-amount .fui-TableHeaderCell__button {
+  justify-content: flex-end;
+}
+
+.ledger .col-actions {
+  width: 48px;
+}
+
+/* ---------- Confirm dialog ---------- */
+
+.confirm-dialog.fui-DialogSurface {
+  max-width: 440px;
+}
+
+/* Fluent has no "danger" button appearance; tint the primary button red. */
+.fui-Button.danger-button {
+  background: var(--colorPaletteRedBackground3);
+  border-color: transparent;
+  color: var(--colorNeutralForegroundOnBrand);
+}
+
+.fui-Button.danger-button:hover,
+.fui-Button.danger-button:hover:active {
+  background: var(--colorPaletteRedForeground1);
+  color: var(--colorNeutralForegroundOnBrand);
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 760px) {
+  .entry-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .field-type,
+  .field-description,
+  .entry-submit {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .app-bar {
+    padding: 0 16px;
+  }
+
+  .app {
+    padding: 24px 16px 48px;
+  }
+
+  .panel.fui-Card {
+    padding: 16px;
+  }
+
+  .filters {
+    width: 100%;
+  }
+
+  .filters .fui-Select {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ledger .col-category {
+    display: none;
+  }
+
+  .ledger .col-amount {
+    width: auto;
+  }
 }

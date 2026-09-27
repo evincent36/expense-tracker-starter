@@ -1,11 +1,39 @@
+/* Fluent's FluentProvider supplies fonts and color tokens (--colorBrandBackground, …);
+   only page-level resets and chart colors live here. */
+
+:root {
+  /* Chart series colors, validated for contrast and color-vision deficiency. */
+  --chart-income: #0f6cbd;
+  --chart-expense: #d13438;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --chart-income: #2886de;
+    --chart-expense: #d13438;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  color: #333;
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

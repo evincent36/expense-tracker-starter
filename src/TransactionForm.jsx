@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Button, Field, Input, Radio, RadioGroup, Select } from '@fluentui/react-components'
+import { AddRegular } from '@fluentui/react-icons'
 
 function TransactionForm({ categories, onAdd }) {
   const [description, setDescription] = useState("");
@@ -26,33 +28,45 @@ function TransactionForm({ categories, onAdd }) {
   };
 
   return (
-    <div className="add-transaction">
-      <h2>Add Transaction</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Description"
+    <form className="entry-form" onSubmit={handleSubmit} aria-label="Add a transaction">
+      <Field label="Type" className="field-type">
+        <RadioGroup layout="horizontal" value={type} onChange={(_e, data) => setType(data.value)}>
+          <Radio value="expense" label="Expense" />
+          <Radio value="income" label="Income" />
+        </RadioGroup>
+      </Field>
+      <Field label="Description" className="field-description">
+        <Input
+          placeholder="e.g. Groceries"
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(_e, data) => setDescription(data.value)}
+          required
         />
-        <input
+      </Field>
+      <Field label="Amount" className="field-amount">
+        <Input
           type="number"
-          placeholder="Amount"
+          inputMode="decimal"
+          min="0"
+          step="0.01"
+          placeholder="0.00"
+          contentBefore="$"
           value={amount}
-          onChange={(e) => setAmount(e.target.value)}
+          onChange={(_e, data) => setAmount(data.value)}
+          required
         />
-        <select value={type} onChange={(e) => setType(e.target.value)}>
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>
-        </select>
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+      </Field>
+      <Field label="Category" className="field-category">
+        <Select value={category} onChange={(_e, data) => setCategory(data.value)}>
           {categories.map(cat => (
             <option key={cat} value={cat}>{cat}</option>
           ))}
-        </select>
-        <button type="submit">Add</button>
-      </form>
-    </div>
+        </Select>
+      </Field>
+      <Button type="submit" appearance="primary" icon={<AddRegular />} className="entry-submit">
+        Add {type}
+      </Button>
+    </form>
   );
 }
 
