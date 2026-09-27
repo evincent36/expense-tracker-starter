@@ -246,15 +246,20 @@
 }
 
 /* Fluent has no "danger" button appearance; tint the primary button red. */
+/* Danger tokens keep white text at 6:1 or better in both themes. */
 .fui-Button.danger-button {
-  background: var(--colorPaletteRedBackground3);
+  background: var(--colorStatusDangerBackground3);
   border-color: transparent;
   color: var(--colorNeutralForegroundOnBrand);
 }
 
-.fui-Button.danger-button:hover,
+.fui-Button.danger-button:hover {
+  background: var(--colorStatusDangerBackground3Hover);
+  color: var(--colorNeutralForegroundOnBrand);
+}
+
 .fui-Button.danger-button:hover:active {
-  background: var(--colorPaletteRedForeground1);
+  background: var(--colorStatusDangerBackground3Pressed);
   color: var(--colorNeutralForegroundOnBrand);
 }
 

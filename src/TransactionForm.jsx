@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Button, Field, Input, Radio, RadioGroup, Select } from '@fluentui/react-components'
 import { AddRegular } from '@fluentui/react-icons'
+import { todayIso } from './format.js'
 
 function TransactionForm({ categories, onAdd }) {
   const [description, setDescription] = useState("");
@@ -18,7 +19,7 @@ function TransactionForm({ categories, onAdd }) {
       amount: Number(amount),
       type,
       category,
-      date: new Date().toISOString().split('T')[0],
+      date: todayIso(),
     });
 
     setDescription("");

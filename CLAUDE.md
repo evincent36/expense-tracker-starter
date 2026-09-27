@@ -29,7 +29,7 @@ Vite 7 + React 19, plain JavaScript (JSX), no TypeScript, no router, no state li
 ```
 App                 state: transactions (seeded), categories (constant)
 ├── Summary         props: transactions            → derives income / expenses / balance ("You're $X in the black/red.")
-├── SpendingChart   props: transactions            → derives totals per category, colored by the dominant type (Recharts horizontal bar chart)
+├── SpendingChart   props: transactions            → derives totals per category and type: one bar per side, so a category with both income and expenses gets two bars (Recharts horizontal bar chart)
 └── TransactionList props: transactions, categories, onDelete, children   state: filterType, filterCategory, pendingDelete
     ├── TransactionForm props: categories, onAdd   state: description, amount, type, category   (passed by App as `children`, rendered above the table)
     └── ConfirmDialog  props: title, message, confirmLabel, onConfirm, onCancel   (rendered only while pendingDelete is set)
@@ -47,7 +47,7 @@ App                 state: transactions (seeded), categories (constant)
 - Styling is plain CSS with class names: `src/App.css` holds styles for all components (no per-component CSS files), `src/index.css` holds globals plus the two chart series colors (`--chart-income`, `--chart-expense`, with dark-mode values). Colors come from Fluent's theme CSS variables (`var(--colorNeutralForeground3)`, `var(--colorPaletteRedForeground1)`, …) rather than raw hex, so the light and dark themes both work. Components are not styled with `makeStyles`.
 - Fluent injects its own single-class style rules at runtime, and they win ties with `App.css`. To override a Fluent component, double up the selector (`.panel.fui-Card`, `.fui-FluentProvider.app-root`, `.summary .summary-headline`).
 - Recharts sets colors as SVG attributes, which can't read CSS variables, so the bars (`Cell className="bar-income"`), ticks, and grid are colored from `App.css` via CSS `fill`/`stroke`.
-- Money and date display goes through `src/format.js` (`formatMoney`, `formatDate`). It's a plain module, not a component.
+- Money and dates go through `src/format.js`: `formatMoney` and `formatDate` for display, and `todayIso` for new transactions. `todayIso` gives the *local* date; `toISOString()` gives the UTC date, which is already tomorrow on evenings west of UTC. It's a plain module, not a component.
 
 ## Known gotchas
 
